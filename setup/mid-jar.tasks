@@ -1,0 +1,3 @@
+# mid jar builder tasks
+set var for mid size;setvar size mid
+start xml conversion;buildjar

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="keywords" content="dictionary, language, MIDP, J2ME, Java, Midlet, mobile, cell phone, PDA">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>DictionaryForMIDs - a free multi-language dictionary for cell phones and PDAs</title>
+  </head>
+
+<body>
+
+
+<div id="content">
+
+    <a name="Setup"></a>
+    <h2>Normation: Implementing language specific features</h2>
+    <h3><br>
+        General</h3>
+    <p>With normation you can implement phonetic searches for a language and
+        a lot more. Normation classes for several languages
+        <a href="newdictNormationLang.html">are already implemented</a>. The
+        description below gives you information for implementing an additional
+        Normation class. </p>
+    <p>For normation a Java class needs to be implemented. The name
+        of this Java class is provided in the property languageXNormationClassName.</p>
+    <p>The class name needs to include the package identification (no package
+    identification if default package is used).</p>
+    <p>Per convention the Normation classes have as name NormationXXX where XXX is
+    the value from the property languageXFilePostfix.</p>
+    <p>The normation class needs to inherit from the class
+        de.kugihan.dictionaryformids.normation.Normation and provide a language
+        specific implementation for the methods of the Normation class. Here is
+        an extract from the Normation class:</p>
+    <pre>package de.kugihan.dictionaryformids.translation.normation;
+
+  public class Normation {
+    public StringBuffer normateWord(StringBuffer nonNormatedWord) {
+      // default is to do nothing
+      return nonNormatedWord;
+    }
+
+    public Vector searchWord(String text) {
+      // default is to do return only the provided text
+      Vector words = new Vector();
+      words.addElement(new SearchedWord(text));
+      return words;
+    }
+
+    public Vector suggestionWord(String text) {
+      // default is to do return no suggestion
+      Vector suggestions = new Vector();
+      return suggestions;
+    }
+  }
+</pre>
+    <p>Writing Normation-classes is an easy task for the Java part. If you know some
+    rules for a language but you do not know how to implement in Java or you do not
+    have an Java development environment,
+    <a href="http://dictionarymid.sourceforge.net/contact.html">send us</a> the rules and
+        we will implement them.</p>
+
+    <p>In any case, if you did implement a Normation class, please
+        <a href="http://dictionarymid.sourceforge.net/contact.html">send it to us</a>,
+        so that we can make it available for other people who set up a dictionary.</p>
+
+    <h3>Implementation of method normatedWord</h3>
+
+    <p>Overwrite the method normateWord for support of phonetic search. Or
+        for search of words that have different spellings. This method takes a
+        nonNormatedWord and returns a normed representation of that word.</p>
+
+    <p>Example: NormationGer parses the nonNormatedWord for the German
+        'Umlauts' (ä, ö, ü) and returns the word with the Umlaut-paraphrasing
+        (ae, oe, ue). So the user can search for &quot;Mädchen&quot; or &quot;Maedchen&quot;
+        and the translation will be found in both cases.</p>
+
+    <p>Note: in general you should also call NormationLib.defaultNormation
+        as part of normatedWord. <font size="2">NormationLib.defaultNormation</font>
+        provides some general useful normations such as ignoring upper case/lower case
+        and ignoring punctuation characters.</p>
+
+    <h3>Implementation of method searchWord</h3>
+
+    <p>With searchWord you can generate additional words that are searched.
+        searchWord returns a Vector of SearchedWord.</p>
+
+        <p>Example: NormationJpn generates a Hiragana and Katakana
+        representation from a romaji input word. When the user enters a word in
+    romaji, the search done for both Hiragana and Katakana.</p>
+
+    <h3>Implementation of method suggestionWord</h3>
+
+    <p>With suggestionWord you can generate additional words that are
+        suggested to the user when no match is found. The user then can pick a
+        suggestion and re-run the translation. suggestionWord returns a Vector
+        of SuggestedWord.</p>
+</div>
+    </body>
+</html>

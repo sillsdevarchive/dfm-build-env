@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="keywords" content="dictionary, language, MIDP, J2ME, Java, Midlet, mobile, cell phone, PDA">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>DictionaryForMIDs - a free multi-language dictionary for cell phones and PDAs</title>
+  </head>
+
+<body>
+
+
+<div id="content">
+
+    <a name="Setup"></a>
+    <h2>Normation: Available Normation classes for several languages</h2>
+
+    <h3>General</h3>
+
+    <p dir="ltr">Normation classes are already implemented for several
+        languages. You can use those existing Normation classes for your
+        dictionary via the property languageXNormationClassName in the file
+        DictionaryForMIDs.properties. Read <a href="newdictDictionaryGeneration.html">
+        here</a> about how to define Normation classes for your dictionary in
+        the file DictionaryForMIDs.properties.</p>
+
+  <div id="content0">
+    <p>If you intend to implement an additional Normation class, please read
+        <a href="newdictNormation.html">here</a>.</p>
+  </div>
+
+    <h3>List of existing Normation classes</h3>
+
+    <p>Normation classes are implemented for the following languages:</p>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-color: #111111" width="100%" id="AutoNumber2">
+  <tr>
+    <td width="16%" bgcolor="#C0C0C0" dir="ltr" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Name of Normation class</font></td>
+    <td width="22%" bgcolor="#C0C0C0" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Supported Language(s)</font></td>
+    <td width="131%" bgcolor="#C0C0C0" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Description</font></td>
+  </tr>
+  <tr>
+    <td width="16%" dir="ltr" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">NormationLat</font></td>
+    <td width="22%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Latin-based languages</font></td>
+    <td width="131%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">This class provides a first level of normation for
+    Latin-based languages, i.e. many European languages. </font>
+    </p>
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr"><font size="2">NormationLat 'removes extra punctuation' from characters,
+    so that for example &quot;se</font>ñ<font size="2">ora&quot; is also found when searching for &quot;senora&quot;.</font></td>
+  </tr>
+  <tr>
+    <td width="16%" dir="ltr" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">NormationEng</font></td>
+    <td width="22%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">English</font></td>
+    <td width="131%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Currently NormationEng only provides basic general Normation
+    such as ignoring upper and lower case and ignoring punctuation characters. A
+    real good Normation class for English still needs to be implemented.</font></td>
+  </tr>
+  <tr>
+    <td width="16%" dir="ltr" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">NormationEpo</font></td>
+    <td width="22%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Esperanto</font></td>
+    <td width="131%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">NormationEpo allows to the user to ignore the special diacritics on
+    top of ĉ, ĥ, ĵ, ĝ, ŝ and ŭ and just type c, h, j, g, s and u. Also x is ignored alltogether
+    in searches, as users often write 'cxapelo' for 'ĉapelo'.</font></td>
+  </tr>
+  <tr>
+    <td width="16%" dir="ltr" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">NormationGer</font></td>
+    <td width="22%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">German</font></td>
+    <td width="131%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Allows to search for 'Umlaute' with ae, ue, oe. And for ß to
+    search with ss.</font></td>
+  </tr>
+  <tr>
+    <td width="16%" dir="ltr" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">NormationFil</font></td>
+    <td width="22%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Tagalog, Cebuano and other Philippine languages</font></td>
+    <td width="131%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Treats the following character pairs as equal: v and b, f and
+    p, i and e, o and u.</font></td>
+  </tr>
+  <tr>
+    <td width="16%" dir="ltr" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">NormationJpn</font></td>
+    <td width="22%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Japanese</font></td>
+    <td width="131%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Handling of
+    Romaji/Hiragana/Katakana.</font></td>
+  </tr>
+  <tr>
+    <td width="16%" dir="ltr" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">NormationNor</font></td>
+    <td width="22%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Norwegian</font></td>
+    <td width="131%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Handling of special Norwegian characters.</font></td>
+  </tr>
+  <tr>
+    <td width="16%" dir="ltr" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">NormationRus2</font></td>
+    <td width="22%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Russian</font></td>
+    <td width="131%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Allows you to search words both in Cyrillic and Latin
+    transcription (according to GOST 16876 (1971) - but yards are 'x' and there are
+    used no apostrophes).</font></p>
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Note: the class NormationRus is deprecated; please in general
+    use NormationRus2 for Russian language.</font></td>
+  </tr>
+  <tr>
+    <td width="16%" dir="ltr" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">NormationRusC</font></td>
+    <td width="22%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Russian</font></td>
+    <td width="131%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Allows you to search words both in Cyrillic and Latin
+    transcription (according to the Czech ISO norm - but yards are &#39;x&#39;, there
+    are used no diacritics and ë is transcripted as 'jo').</font></td>
+  </tr>
+  <tr>
+    <td width="16%" dir="ltr" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">NormationUkr</font></td>
+    <td width="22%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Ukrainian</font></td>
+    <td width="131%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Allows you to search words both in Cyrillic and Latin
+    transcription (according to GOST 16876 (1971) - but yards are 'x' and there are
+    used no apostrophes).</font></td>
+  </tr>
+  <tr>
+    <td width="16%" dir="ltr" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">NormationUkrC </font></td>
+    <td width="22%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Ukrainian</font></td>
+    <td width="131%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Allows you to search words both in Cyrillic and Latin
+    transcription (according to the Czech ISO norm - but yards are 'x', there
+    are used no diacritics,  </font>ë<font size="2"> is transcripted as 'jo' and  </font>
+    ï<font size="2"> as &#39;ji&#39;.).</font></td>
+  </tr>
+  <tr>
+    <td width="16%" dir="ltr" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">NormationVie</font></td>
+    <td width="22%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">Vietnamese</font></td>
+    <td width="131%" align="left" valign="top">
+    <p style="margin-left: 6; margin-right: 6; margin-top: 6; margin-bottom: 5" dir="ltr">
+    <font size="2">(description not yet available)</font></td>
+  </tr>
+</table>
+
+  <p>A general note: usually all Normation classes provide basic
+  general normation such as ignoring upper/lower case and ignoring punctuation
+  characters.</p>
+
+</div>
+
+</body>
+</html>

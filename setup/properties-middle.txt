@@ -1,0 +1,9 @@
+dictionaryGenerationSeparatorCharacter: '\t'
+indexFileSeparationCharacter: '\t'
+searchListFileSeparationCharacter: '\t'
+dictionaryFileSeparationCharacter: '\t'
+dictionaryGenerationOmitParFromIndex: true
+dictionaryGenerationInputCharEncoding: UTF-8
+indexCharEncoding: UTF-8
+searchListCharEncoding: UTF-8
+dictionaryCharEncoding: UTF-8

@@ -1,0 +1,3 @@
+# mid-x2d tasks
+set var for mid;setvar size mid
+start xml conversion;xml2dfmsetup

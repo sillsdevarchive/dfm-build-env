@@ -1,0 +1,5 @@
+# default menu for DictionaForMids
+Word List building menu;menu setup\wl.menu " wl %iso% - %langname% project word list builder"
+#Min size dictionary build;menu setup\min.menu
+Mid sized dictionary build;menu setup\mid.menu "mid %iso% - %langname% project mid size dict builder"
+#Max size dictionary with full search;menu setup\full.menu

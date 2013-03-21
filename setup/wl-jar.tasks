@@ -1,0 +1,3 @@
+# wl jar builder tasks
+set var for wl;setvar size wl
+start xml conversion;buildjar

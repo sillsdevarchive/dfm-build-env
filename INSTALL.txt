@@ -1,0 +1,17 @@
+INSTALL for the DictionaryForMIDs package, version 3.5.7.
+
+============================================================
+
+
+Java enabled mobile/cell phones:
+The JAR file included in this ZIP package can be installed on Java enabled phone.
+For Nokia phones the JAR app can be installed through the Nokia PC Suite.
+Some phones only require you to put it on the MicroSD card.
+For other Java enable phones consult your phone instructions.
+
+For Android phones:
+Install from the Google Play store: DictionaryForMIDs
+URL: https://play.google.com/store/apps/details?id=de.kugihan.dictionaryformids.hmi_android
+Once DictionaryForMIDs is installed, put this ZIP package onto the
+microSD card and Start DictionaryForMIDs on your phone then select
+Menu/Dictionary/From File and choose the ZIP file on the microSD card.

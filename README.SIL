@@ -1,0 +1,28 @@
+DictionaryForMids SIL Build environment
+
+This build environment is meant for people wishing to produce dictionaries for
+multiple languages and those in different sizes.
+
+When we use "iso" we mean the three letter ISO code.
+
+The input file for this process is an xml file output from Toolbox. The file can
+be copied from another place on your computer or you can just put it in the
+data\iso directory. The file should be named iso-a.xml
+
+Four sizes of dictionary can built in.
+Wordlist: Just the lexeme and the indexes in other languages.
+Minimal. Dictionay lacking example sentences
+Mid sized. Full dictionary
+Full sized. Full dictionary with indexing on example vernacular sentences.
+
+Size comparison for a 5500 word dictionary with four languge indexes i.e. Eng, nat, reg, reg2
+wl          602kB
+min         816kB
+mid        1081kB
+full       2227kB
+
+The XSLT transformation sheets can be modified for any code set. The standard
+ones are for Philippines codes but MDF inputs are handled at a basic level.
+
+Ian McQuay
+ian_mcquay@sil.org

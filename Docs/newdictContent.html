@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="keywords" content="dictionary, language, MIDP, J2ME, Java, Midlet, mobile, cell phone, PDA">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>DictionaryForMIDs - a free multi-language dictionary for cell phones and PDAs</title>
+  </head>
+
+<body>
+
+
+<div id="content">
+
+    <h2>Content declarations</h2>
+    <p>Content properties are new with version 3.0.</p>
+
+    <h3>Properties</h3>
+    <p>With the content properties you can specify that there is a pronunciation
+  part, an explanation part, etc. For each content you can specify font
+  colour, font style and more. <br>
+    The content is specified for each languageX.</p>
+    <ul>
+    <li>languageXNumberOfContentDeclarations</li>
+    </ul>
+    <p>Defines how many content-declarations exist for this dictionary. For
+    each content-declaration the contentNN-properties need to be defined as
+    described below. Note: all contentNN-properties must have two digits:
+    content01..., content02..., content03 etc !</p>
+    <p>The property languageXNumberOfContentDeclarations is optional. When
+    this property is not set, then DictionaryForMIDs does not scan for
+        <a href="#ContentTags">content tags</a> in the dictionary.</p>
+    <ul>
+    <li>languageXContentNNDisplayText</li>
+    </ul>
+
+    <p>Text that is used on the user interface to identify the content. NN
+    needs to be replace with the content number. For example:<br>
+    language1Content01DisplayText: contentDefinition<br>
+    language1Content02DisplayText: contentPronunciation<br>
+        ...<br>
+        language1Content05DisplayText: Pinyin</p>
+
+    <p>Predefined content is prefixed by &quot;content&quot;. The following content is
+    predefined in DictionaryForMIDs:<br>
+        contentDefinition<br>
+    contentPronunciation<br>
+    contentGrammaticalCategory<br>
+    contentOrigin<br>
+    contentSampleUsage<br>
+    contentNotes</p>
+
+    <p>* <font color="#FF0000">Note</font>: &quot;contentDefinition&quot; and
+    &quot;contentNotes&quot; will become available in version 3.0.3</p>
+    <p>For predefined content there are default values for font colour, font
+    style etc. If you do not want to use Predefined content, then you may
+    choose any other name for languageXContentNNDisplayText.</p>
+
+    <ul>
+    <li>languageXContentNNFontColour</li>
+    </ul>
+
+    <p>Defines the font colour for the content. Font colour is specified as
+    'RRR, GGG, BBB' where RRR is the value for red, GG for green and BBB for
+    blue. RRR, GGG, BBB each can have a value between 0 and 255.</p>
+    <p>Example for yellow colour:<br>
+        language1Content01FontColour: 0,255,255</p>
+  <p>This property is optional.</p>
+
+        <p>You are free to choose any color you wish using the RGB color codes.
+    But, if you wish to use &quot;traditional colors&quot;, then here is a list of the
+    15 most common colors.</p>
+
+    <table border="0">
+      <tr>
+        <td width="80"><font color="#800000">
+        &nbsp;Maroon</font></td>
+        <td width="120"><font color="#800000">
+        &nbsp;128,0,0</font></td>
+      </tr>
+      <tr>
+        <td><font color="#FF0000">
+        &nbsp;Red</font></td>
+        <td><font color="#FF0000">
+        &nbsp;255,0,0</font></td>
+      </tr>
+      <tr>
+        <td><font color="#FFFF00">
+        &nbsp;Yellow</font></td>
+        <td><font color="#FFFF00">
+        &nbsp;255,255,0</font></td>
+      </tr>
+      <tr>
+        <td><font color="#008000">
+        &nbsp;Green</font></td>
+        <td><font color="#008000">
+        &nbsp;0,128,0</font></td>
+      </tr>
+      <tr>
+        <td><font color="#00FF00">
+        &nbsp;Lime</font></td>
+        <td><font color="#00FF00">
+        &nbsp;0,255,0</font></td>
+      </tr>
+      <tr>
+        <td><font color="#000080">
+        &nbsp;Navy</font></td>
+        <td><font color="#000080">
+        &nbsp;0,0,128</font></td>
+      </tr>
+      <tr>
+        <td><font color="#0000FF">
+        &nbsp;Blue</font></td>
+        <td><font color="#0000FF">
+        &nbsp;0,0,255</font></td>
+      </tr>
+      <tr>
+        <td><font color="#008080">
+        &nbsp;Teal</font></td>
+        <td><font color="#008080">
+        &nbsp;0,128,128</font></td>
+      </tr>
+      <tr>
+        <td><font color="#00FFFF">
+        &nbsp;Aqua</font></td>
+        <td><font color="#00FFFF">
+        &nbsp;0,255,255</font></td>
+      </tr>
+      <tr>
+        <td><font color="#800080">
+        &nbsp;Purple</font></td>
+        <td><font color="#800080">
+        &nbsp;128,0,128</font></td>
+      </tr>
+      <tr>
+        <td><font color="#FF00FF">
+        &nbsp;Fuchsia</font></td>
+        <td><font color="#FF00FF">
+        &nbsp;255,0,255</font></td>
+      </tr>
+      <tr>
+        <td><font color="#808000">
+        &nbsp;Olive</font></td>
+        <td><font color="#808000">
+        &nbsp;128,128,0</font></td>
+      </tr>
+      <tr>
+        <td><font color="#808080">
+        &nbsp;Gray</font></td>
+        <td><font color="#808080">
+        &nbsp;128,128,128</font></td>
+      </tr>
+      <tr>
+        <td><font color="#C0C0C0">
+        &nbsp;Silver</font></td>
+        <td><font color="#C0C0C0">
+        &nbsp;192,192,192</font></td>
+      </tr>
+      <tr>
+        <td><font color="#000000">
+        &nbsp;Black</font></td>
+        <td><font color="#000000">
+        &nbsp;0,0,0</font></td>
+      </tr>
+    </table>
+
+    <ul>
+    <li>languageXContentNNFontStyle</li>
+    </ul>
+
+    <p>Defines the font style for the content. Allowed values are:<br>
+        bold<br>
+        italic<br>
+        underlined<br>
+        plain</p>
+    <p>Example for underlined text:<br>
+        language1Content01FontStyle: underlined<br>
+        <br>
+        This property is optional, the default value is plain.</p>
+
+    <ul>
+    <li>languageXContentNNDisplaySelectable</li>
+    </ul>
+
+    <p>A boolean property with either the value true or the value false. Set
+    to true when the user can turn on or off the display of this content.
+    Set to false when this content is always displayed, i.e. the user cannot
+    turn off the display of this content.<br>
+    This property is optional, the default value is true.<br>
+        This property will be supported in a later version.<br>
+    &nbsp;</p>
+
+    <h3><a name="ContentTags"></a>Content tags for the dictionaries</h3>
+    <p>In the dictionaries the content parts are marked with the following
+    syntax:</p>
+    <p>Each content has a start delimiter at the beginning and an end
+    delimiter at the end.</p>
+    <p>Start delimiter: <br>
+        [NN<br>
+        where NN is the content number. This needs to be a two-digit number !</p>
+    <p>End delimiter: <br>
+        ]<br>
+        <br>
+        To use a [ or ]-character in the text (without content syntax) a \ must
+    be prepended:&nbsp; \[ and \]<br>
+        A newline-character is \n and a tab is \t</p>
+    <p>Contents can be nested.</p>
+    <p>Here is an example for a language2 column:</p>
+    <dl>
+          <dd>
+    <pre>dictionary [01dikshionari] [02noun] [03\nA book that contains translations for words.]</pre>
+          </dd>
+    </dl>
+
+    <p>In that example the following properties are declared:<br>
+    language2Content01DisplayText: contentPronunciation<br>
+    language2Content02DisplayText: contentGrammaticalCategory<br>
+    language2Content03DisplayText: contentNotes<br>
+&nbsp;</p>
+    <p>Contents can also be nested. Example:</p>
+
+    <dl>
+      <dd>
+    <pre>dictionary [01dikshionari] [03\nA book that contains translations for words. [02noun]\nAlso exists in electronic form]</pre>
+      </dd>
+    </dl>
+
+
+</div>
+</body>
+</html>

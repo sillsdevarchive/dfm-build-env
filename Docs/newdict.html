@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="keywords" content="dictionary, language, MIDP, J2ME, Java, Midlet, mobile, cell phone, PDA">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>DictionaryForMIDs - a free multi-language dictionary for cell phones and PDAs</title>
+  </head>
+  <body>
+
+<div id="content">
+
+  <a name="Setup"></a>
+  <h2><a name="sourceen"></a>Setting up a new dictionary for DictionaryForMIDs</h2>
+
+  <blockquote>
+  <p dir="ltr"><i><br>
+  For change notes from past releases see
+  <a href="newdictChangeNotes.html">here</a>.</i></p>
+  </blockquote>
+
+  <p>Note: These are instructions for Windows users.&nbsp; Detailed
+  instructions are coming soon for other operating systems.&nbsp; For the time
+  being, users with other operating systems may use the build.sh file instead of the setup.bat file.&nbsp;
+  We have no preference for user&#39;s operating system.&nbsp; DictionaryforMIDs
+  is built on Java.&nbsp; Therefore a dictionary can be built on any operating
+  system that runs Java such as Linux, Windows, or Mac.&nbsp; Only the details
+  for accessing files changes among operating systems.</p>
+  <p>&nbsp;</p>
+  <p>Setting up a dictionary is just configuration, there is no need to have
+  programming knowledge or a development environment. And if you have any
+  problem during setting up a dictionary for DictionaryForMIDs, just
+  <a href="http://dictionarymid.sourceforge.net/contact.html">contact us</a> and we will assist you.</p>
+  <p>Setting up a dictionary for DictionaryForMIDs involves the following
+  steps:</p>
+  <ol>
+  <li><a href="#SetupDictionaryFile">Setup dictionary file</a></li>
+  <ul type="disc">
+    <li><a href="#LineBreak">Add line breaks (optional)</a></li>
+    <li><a href="#IndexFileSizeReduction">Exclude text from index (optional)</a></li>
+    <li><a href="#ContentDeclaration">Define content declarations (optional)</a></li>
+    <li><a href="#TwoSource">Using two source dictionaries (optional)</a></li>
+  </ul>
+  <li><a href="#SetupEnvironment">Setup work environment</a></li>
+  <li><a href="#SetupProperties">Configure DictionaryForMIDs.properties</a></li>
+  <ul type="disc">
+    <li><a href="#UpdateClass">Using a DictionaryUpdate class (optional)</a></li>
+  </ul>
+  <li><a href="#Build">Build dictionary</a></li>
+  <ul type="disc">
+    <li><a href="#BitmapFont">Add bitmap fonts (optional)</a></li>
+  </ul>
+  <li><a href="#Publish">Publish dictionary (optional)</a></li>
+  </ol>
+  <p>&nbsp;</p>
+
+  <h2><a name="#SetupDictionaryFile"></a>1. Setup the dictionary file</h2>
+
+  <p>The easiest way to store a dictionary is by using a spreadsheet program
+  such as Microsoft Excel.&nbsp; Create two columns: the headword for the
+  first language, and the definition in the second language.&nbsp; Microsoft
+  Access can also be used to store the dictionary, but it is more difficult to
+  edit and sort the data.&nbsp; Microsoft Excel 2007 is best as each cell can
+  store an unlimited amount of data.&nbsp; Microsoft Excel 2003 can only store
+  255 letters in each cell.</p>
+
+  <h3><a name="LineBreak"></a>Adding line breaks (optional)</h3>
+
+  <p>Some definitions can be very long. The definition would be easier to read if
+  there were line breaks.&nbsp; Here is an example:</p>
+
+  <tt>Read [tab] 1. To read, advice, counsel. 2. To interpret; to explain; as,
+  to read a riddle. 3. To tell; to declare; to recite</tt><br>
+
+  <p>Note: [tab] is for the tab-separator character (would be &#39;\t&#39; in
+  DictionaryForMIDs.properties)</p>
+  <p>The definition would display as a long string of words. To add a line
+  break, add a &quot;\n&quot; to the definition.&nbsp; For example:</p>
+
+  <tt>Read [Tab] 1. To read, advice, counsel\n2. To interpret; to explain; as,
+  to read a riddle.\n3. To tell; to declare; to recite</tt>
+  <p>Now the definition will be displayed like this:</p>
+
+  <tt>Read</tt><br>
+  <tt>1. To read, advice, counsel.</tt><br>
+  <tt>2. To interpret; to explain; as, to read a riddle.</tt><br>
+  <tt>3. To tell; to declare; to recite.</tt>
+  </p>
+
+  <h3><a name="IndexFileSizeReduction"></a>Excluding text from generated index
+  files (optional)</h3>
+  <p dir="ltr">Dictionaries with many example sentences and grammar tags can
+  create very big indexes. For example, if the inputdictionaryfile was 2 MB,
+  then the generated files could be 10 MB or more.<br>
+  <br>
+  To illustrate the problem, here is an example with a line from the
+  inputdictionaryfile:<br>
+  <br>
+  <tt>sleep&nbsp; The state of reduced consciousness of a human or animal
+  [tab] Schlaf&nbsp; Zustand der Ruhe eines Tieres oder Menschen<br>
+  </tt><br>
+  Note: [tab] is for the tab-separator character (would be &#39;\t&#39; in
+  DictionaryForMIDs.properties)<br>
+  <br>
+  Here, without additional information, DictionaryGeneration would index all
+  expressions that are included in the explanatory texts (e.g. &quot;The state of
+  reduced consciousness of a human or animal&quot;). This is undesirable.<br>
+  <br>
+  The solution is to put the text that does not need to be included in the
+  index between {{ and }}.<br>
+  <br>
+  In the example:<br>
+  <tt>sleep&nbsp; {{The state of reduced consciousness of a human or
+  animal}}[tab]Schlaf&nbsp; {{Zustand der Ruhe eines Tieres oder Menschen}}</tt><br>
+  <br>
+  Then the size of the generated files would collapse. For an dictionary with
+  an inputdictionaryfile of 2 MB as in the above example, the compressed
+  result will likely be below 2 MB.</p>
+
+  <h3><a name="ContentDeclaration"></a>Define content declarations (optional)</h3>
+
+  <p>Content declarations allow users to add different styles to different
+  parts of a definition.&nbsp; For example, all grammar tags could be
+  displayed in blue color and all sample sentences could be displayed in
+  italics.&nbsp; For more information see <a href="newdictContent.html">here</a>.</p>
+
+  <h3><a name="TwoSource"></a>Using two source dictionaries (optional)</h3>
+
+  <p>Typically only one source dictionary is used to create a built
+  dictionary.&nbsp; A input dictionary file has a headword followed by
+  definition in the second language.&nbsp; DictionaryforMIDs creates a
+  bi-directional dictionary by building an index from language1 -&gt; language2
+  as well as language2 -&gt; language1.</p>
+  <p>However, you may have two separate input dictionary files.&nbsp; One
+  input file is from language1 -&gt; language2.&nbsp; The second input file is
+  from language2 -&gt; language1.&nbsp; For information for setting up these
+  kinds of dictionaries, please see <a href="newdictMultiple.html">here</a>.</p>
+  <p>&nbsp;</p>
+
+  <h2><a name="SetupEnvironment"></a>2. Setup the work environment</h2>
+
+  <p>Download DictionaryforMIDs:</p>
+  <p><a href="http://prdownloads.sourceforge.net/dictionarymid/DictionaryForMIDs_3.5.7.zip?download">
+  DictionaryforMIDs version 3.5.7</a></p>
+
+  <p>Extract the files to C:\Dict\.&nbsp;
+  You may change the directory, but you will need to change the following
+  instructions to meet your chosen directory.&nbsp; Therefore it is recommended to leave the
+  directory as C:\Dict\ for new users.</p>
+  <p>The work environment contains the following tools:</p>
+
+  <table border="1">
+    <tr>
+      <td width="245">DictionaryForMIDs.jar<br>DictionaryForMIDs.jad
+
+      </td>
+      <td width="845">These are the empty files that you will add your
+      dictionary into.</td>
+    </tr>
+    <tr>
+      <td>DictionaryGeneration.jar</td>
+      <td>This tool will build the index files for you.</td>
+    </tr>
+    <tr>
+      <td>JarCreator.jar</td>
+      <td>This tool will package your index files into one file.</td>
+    </tr>
+    <tr>
+      <td>FontGenerator.jar</td>
+      <td>This tool will create bitmap fonts for users who do not have the
+      necessary fonts on their phone.</td>
+    </tr>
+  </table>
+
+  <p>Next, download Java (J2SE Runtime) and install it.&nbsp;
+  DictionaryforMIDs depends on Java to create the dictionary files.&nbsp; You
+  can download Java from
+  <a href="http://java.com/en/download/index.jsp">
+  here</a> (this file is &gt; 10 MB).</p>
+
+  <p>Next, check to see that your Java environment is setup correctly.&nbsp;
+  You can check this by building&nbsp;the sample dictionary that is included with DictionaryforMIDs.&nbsp; Go to
+  Windows Explorer.&nbsp;
+  Change to the C:\Dict\ directory.&nbsp; Double click on &quot;setup.bat&quot;.&nbsp; If all goes well the command
+  prompt will return without giving an error.&nbsp; The sample dictionary will show up in the C:\Dict\JAR\ directory.</p>
+  <p>If you got an error message about missing Java, then you may need to add
+  Java to your Windows path:</p>
+  <tt>Start Menu-&gt; Control Panel -&gt; System -&gt; Advanced System Settings -&gt;
+  Environment Variables -&gt; System Variables -&gt; Path -&gt; Edit</tt>
+
+  <p>Add this to the end of your path (you need the &quot;;&quot;):<br>
+  <tt>;C:\Program Files\Java\jre6\bin\</tt><br>
+  Then reboot and you should be good to go.</p>
+  <p>Note: If you are using a 64 bit version of Windows, then you may need to
+  use <tt>&quot;C:\Program Files (x86)\&quot;</tt> instead of <tt>&quot;C:\Program Files\&quot;</tt>
+  depending on which version of Java you downloaded.</p>
+  <p>If you&#39;d like to build a sample dictionary with
+  <a href="newdictContent.html">Content Declarations</a>,
+  then run C:\Dict\Advanced\setup.bat.&nbsp; You can also view the
+  C:\Dict\Advanced\Dictionary_input.txt file to view the Content Declarations.</p>
+  <p>Once your environment is ready, you can create your input dictionary
+  file.&nbsp; Open C:\Dict\Dictionary_input.txt in Microsoft Word.&nbsp; Delete all
+  the data in the file.&nbsp; Then open Microsoft Excel and copy the two
+  columns you created and paste them into Microsoft Word.&nbsp; Save the
+  file again (using UTF-8 encoding) and the file is ready.</p>
+
+  <p>&nbsp;</p>
+
+  <h2><a name="SetupProperties"></a>3. Configuring the properties of the file
+  DictionaryForMIDs.properties</h2>
+
+  <p>Here is where you customize DictionaryforMIDs for your dictionary.&nbsp;
+  Here is a sample DictionaryForMIDs.properties file:</p>
+  <pre>
+  infoText: <font color="#0000FF">IDP (English - German), version 1.1 19Feb99: http://www.ilovelanguages.com/IDP/IDPfiles.html</font>
+  dictionaryAbbreviation: <font color="#0000FF">IDP(Eng-Ger)</font>
+  numberOfAvailableLanguages: 2
+
+  language1DisplayText: <font color="#0000FF">English</font>
+  language2DisplayText: <font color="#0000FF">German</font>
+  language1FilePostfix: <font color="#0000FF">Eng</font>
+  language2FilePostfix: <font color="#0000FF">Ger</font>
+
+  language1IsSearchable: true
+  language2IsSearchable: true
+  language1GenerateIndex: true
+  language2GenerateIndex: true
+
+  language1HasSeparateDictionaryFile: false
+  language2HasSeparateDictionaryFile: false
+
+  dictionaryGenerationSeparatorCharacter: &#39;\t&#39;
+  indexFileSeparationCharacter: &#39;\t&#39;
+  searchListFileSeparationCharacter: &#39;\t&#39;
+  dictionaryFileSeparationCharacter: &#39;\t&#39;
+
+  dictionaryGenerationOmitParFromIndex: true
+  dictionaryGenerationInputCharEncoding: UTF-8
+  indexCharEncoding: UTF-8
+  searchListCharEncoding: UTF-8
+  dictionaryCharEncoding: UTF-8
+
+  language1DictionaryUpdateClassName: de.kugihan.dictionaryformids.dictgen.dictionaryupdate.DictionaryUpdate
+  language2DictionaryUpdateClassName: de.kugihan.dictionaryformids.dictgen.dictionaryupdate.DictionaryUpdate
+  language1NormationClassName: de.kugihan.dictionaryformids.translation.normation.Normation.<font color="#0000FF">NormationEng</font>
+  language2NormationClassName: de.kugihan.dictionaryformids.translation.normation.Normation.<font color="#0000FF">NormationGer</font>
+  </pre>
+
+  <p>You usually will only have to change the items in
+  <font color="#0000FF">blue</font>.&nbsp; Everything else will probably
+  remain the same.&nbsp; You can edit DictionaryForMIDs.properties with
+  NotePad or any other word processing program.</p>
+
+  <p>The infoText field has three parts: title of dictionary, version of
+  dictionary, and the website of the original data.&nbsp; The title will be
+  similar to the dictionaryAbbreviation.&nbsp; If the dictionary has a title
+  already, then use that title.&nbsp; If there is no original title then use
+  the title of the website that created that original dictionary or the last
+  name of the person who created the original dictionary (the last name of the
+  person on the website, not your name).&nbsp; Next, add the version of the
+  dictionary listed on the webpage.&nbsp; If a version is not given, then use
+  the date written on the webpage.&nbsp; If that is not available too, then
+  use today&#39;s date.&nbsp; Then add the link to the website where you got the
+  original dictionary file.</p>
+  <p>Next, write in the languages of the dictionary.&nbsp; The language in the
+  left column of the dictionary file will be language1.&nbsp; The language on
+  the right side will be language2.&nbsp; Then write in the 3-digit code for
+  the languages.&nbsp; The codes are available
+  <a href="http://en.wikipedia.org/wiki/List_of_ISO_639-2_codes">here</a>.</p>
+  <p>Normation classes are used to search multiple languages using simple
+  input words.&nbsp; For example, for German &#39;Umlauts&#39; (ä, ö, ü), the
+  NormationGer normation class allows the user to only type &quot;a&quot;, &quot;o&quot;, or &quot;u&quot;
+  and still find the correct words.&nbsp; Normation classes for several
+  languages have already been created.&nbsp; You can find a list
+  <a href="newdictNormationLang.html">here</a>.</p>
+  <p>If a Normation class isn&#39;t available for your language, then you can find
+  information to create a new one <a href="newdictNormation.html">here</a>.&nbsp;
+  Or, you can just use the default Normation class.&nbsp; In this case use
+  this:</p>
+
+  <tt>language1NormationClassName:
+  de.kugihan.dictionaryformids.translation.normation.Normation</tt>
+
+  <p>This example gives the basics of creating a DictionaryForMIDs.properties
+  file.&nbsp; For detailed explanations of the options in a DictionaryForMIDs.properties
+  file, then please see <a href="newdictProperties.html">here</a>.</p>
+
+  <h3><a name="UpdateClass"></a>Customization of DictionaryGeneration with a
+  DictionaryUpdate class (optional)</h3>
+  <p>The DictionaryGeneration tool can be customized by DictionaryUpdate
+  classes. Read <a href="newdictDictionaryUpdate.html">here</a> for a description
+  of DictionaryUpdate classes.</p>
+  <p>&nbsp;</p>
+
+  <h2><a name="Build"></a>4. Build the dictionary</h2>
+
+  <p>Now you are ready to build your dictionary.&nbsp; Go to Windows Explorer.&nbsp;
+  Change to the C:\Dict\ directory.&nbsp; Double click on &quot;setup.bat&quot;.&nbsp;
+  Your finished dictionary will show up in the C:\Dict\JAR\ directory.</p>
+  <p>The setup.bat file is just a simple batch file used to build
+  your dictionary.&nbsp; It runs the DictionaryGeneration tool to build the
+  index files and the JarCreator tool to put your index
+  files into a single usable file.</p>
+  <p>The batch file can be opened in NotePad or any word processor to change
+  the directories.&nbsp; For more information on using the
+  DictionaryGeneration tool, see <a href="newdictDictionaryGeneration.html">
+  here</a>.&nbsp; For information on using JARCreator, please see <a href="newdictJARCreator.html">
+  here</a>.</p>
+
+  <h3><a name="BitmapFont"></a>Creating bitmap fonts (optional)</h3>
+
+  <p>The users of your dictionary may not have the necessary fonts to use the
+  dictionary.&nbsp; For example, if you created an English -&gt; Russian
+  dictionary, then your users may not have the Russian fonts on their phone to
+  view the Russian words.&nbsp; Therefore it may be useful to add bitmap fonts
+  to the dictionary.&nbsp; This will enable the user to view any language
+  contained in the dictionary.&nbsp; The FontGenerator tool is found in the
+  C:\Dict\Tools\ directory.&nbsp; For help in creating bitmap fonts, please
+  see <a href="http://dictionarymid.sourceforge.net/bitmapfont.html">here</a>.</p>
+
+  <p>&nbsp;</p>
+
+  <h2><a name="Publish"></a>5. Publishing your dictionary and submitting it to
+  the &#39;dictionary archive&#39; (optional)</h2>
+  <p>If your dictionary is open source, then you can publish it on the
+  <a href="http://dictionarymid.sourceforge.net/dict.html">download page</a>.
+  For this, please send an email to Peter Kmet (send cc to Gert Nuber), see
+  <a href="http://dictionarymid.sourceforge.net/contact.html">contact</a>.
+  Also, please post a message about your dictionary in the
+  <a href="http://dictionarymid.sourceforge.net/forum/">DictionaryForMIDs
+  forum</a>. Once your dictionary is published, please also send the
+  inputdictionaryfile and the other files that are needed to the
+  <a href="http://dictionarymid.sourceforge.net/dictionaryArchive.html">
+  &#39;dictionary archive&#39;</a>. For more information see
+  <a href="http://dictionarymid.sourceforge.net/dictionaryArchive.html">
+  here</a>.</p>
+
+  <h3>Packaging into a ZIP file</h3>
+  <p>For packaging the files, put the 4 files (1) DictionaryForMIDs_xxx.jar
+  (2) DictionaryForMIDs_xxx.jad (3) README.txt and (4) COPYING.txt into a ZIP
+  file. You should use this file naming convention: </p>
+  <p>DictionaryForMIDs_VVVVV_XXXYYY_ZZZ.zip<br>
+  VVVVV: version of DictionaryForMIDs, for example &quot;3.5.0&quot;<br>
+  XXX: language1FilePostfix, for example &quot;Eng&quot;<br>
+  YYY: language2FilePostfix, for example &quot;Por&quot;<br>
+  ZZZ: info on the origin of the dictionary (can be longer than 3 characters),
+  for example &quot;IDP&quot; or &quot;freedict&quot;; sould be the same as defined in the
+  property dictionaryAbbreviation.</p>
+  <p>&nbsp;</p>
+
+
+  <p>If you have any problem with setting up a new dictionary, just
+  <a href="http://dictionarymid.sourceforge.net/contact.html">contact us</a> and we will try to help you !</p>
+
+</div>
+</body>
+</html>

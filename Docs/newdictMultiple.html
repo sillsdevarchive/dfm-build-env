@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="keywords" content="dictionary, language, MIDP, J2ME, Java, Midlet, mobile, cell phone, PDA">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>DictionaryForMIDs - a free multi-language dictionary for cell phones and PDAs</title>
+  </head>
+<body>
+
+
+<div id="content">
+
+<h2>Setup with multiple source dictionaries</h2>
+
+<p>The standard way to setup a DictionaryForMIDs dictionary is to use one input
+dictionary file.&nbsp; An index will be generated for both the left and right
+languages.</p>
+
+<p>For these dictionaries an expression ABC will translate to XYZ. &nbsp;XYZ will
+also translate back to ABC. However, there are also some dictionaries where ABC
+translates to XYZ, but XYZ translates to DEF.&nbsp; For this kind of dictionary
+you will need to setup your dictionary files a little differently.</p>
+
+<p>Instead of using a single input dictionary file, you will use 2 input files,
+one for the ABC to XYZ translation, and one for the XYZ to DEF translation.&nbsp;
+Then you will run the DictionaryGeneration tool 2 times.&nbsp; Here are the
+details of the process.</p>
+
+<h3>Step 1: Run the DictionaryGeneration tool</h3>
+
+<ul>
+  <li>generate 2 input dictionary files (both files should have the languages
+  organized the same way.&nbsp; For example, if you have an English to German
+  dictionary, then the English side should be in the left column for both of the
+  input files)</li>
+</ul>
+
+<ul>
+  <li>enter these properties into your DictionaryForMIDs.properties file:</li>
+</ul>
+
+<pre>
+  language1HasSeparateDictionaryFile: true
+  language2HasSeparateDictionaryFile: true
+</pre>
+
+<ul>
+  <li>also enter this into your DictionaryForMIDs.properties file:</li>
+</ul>
+
+<pre>
+  language1IsSearchable: true
+  language2IsSearchable: false
+  language1GenerateIndex: true
+  language2GenerateIndex: false
+</pre>
+
+<ul>
+  <li>run the DictionaryGeneration tool for 1st input dictionary file</li>
+</ul>
+
+<ul>
+  <li>rename the &quot;dictionary&quot; directory (that contains the directory.csv,
+  index.csv and searchlist.csv files) to something else (dictionaryEngGer, for
+  example)</li>
+</ul>
+
+<ul>
+  <li>make a new &quot;dictionary&quot; directory in the same place as the old directory</li>
+</ul>
+
+<ul>
+  <li>change these properties in your DictionaryForMIDs.properties file:</li>
+</ul>
+
+<pre>
+  language1IsSearchable: false
+  language2IsSearchable: true
+  language1GenerateIndex: false
+  language2GenerateIndex: true
+</pre>
+
+<ul>
+  <li>run the DictionaryGeneration tool again for 2nd input dictionary file</li>
+</ul>
+
+<ul>
+<li>copy the contents of the 1st output folder into the 2nd output folder,
+except for the &quot;DictionaryForMIDs.properties&quot; file (For example: from
+&#39;dictionaryEngGer&#39; to &#39;dictionary&#39;)</li>
+</ul>
+
+<h3>Step 2: Edit your outputted DictionaryForMIDs.properties file</h3>
+
+<ul>
+  <li>change both these settings to true:</li>
+</ul>
+
+<pre>
+  language1IsSearchable: true
+  language2IsSearchable: true
+</pre>
+
+<ul>
+  <li>look at the DictionaryForMIDs.properties files for both outputs.&nbsp; Find
+  the bigger number from both files and enter it into your final
+  DictionaryForMIDs.properties file:</li>
+</ul>
+
+<pre>
+  indexFileMaxSize
+  dictionaryFileMaxSize
+  searchListFileMaxSize
+</pre>
+
+<ul>
+  <li>copy one line into the DictionaryForMIDs.properties file to have both these
+  properties (each of the export files will only have one line):</li>
+</ul>
+
+<pre>
+  language1IndexNumberOfSourceEntries
+  language2IndexNumberOfSourceEntries
+</pre>
+
+<h3>Step 3: Run the JarCreator tool</h3>
+
+</div>
+</body>
+</html>

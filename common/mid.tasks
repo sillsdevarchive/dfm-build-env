@@ -1,0 +1,7 @@
+# wl.tasks
+pubvar
+setuplog
+setvar size mid
+xml2dfmsetup
+xslt plb2dfm-%size% "langs=%langs% size=%size%" "data\%iso%\%iso%-a.xml" "data\%iso%\%langs%\%size%\Dictionary_input.txt"
+buildjar

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="keywords" content="dictionary, language, MIDP, J2ME, Java, Midlet, mobile, cell phone, PDA">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>DictionaryForMIDs - a free multi-language dictionary for cell phones and PDAs</title>
+  </head>
+
+<body>
+
+
+<div id="content">
+
+
+    <h2>DictionaryUpdate - class / Advanced features</h2>
+
+    <ul>
+    <li>
+    <pre>createKeyWordVector</pre>
+    </li>
+    </ul>
+
+    <pre>public Vector createKeyWordVector(String expression, String expressionSplitString) {
+  // default implementation, see class DictionaryUpdate}</pre>
+
+        <p>The method createKeyWordVector is called from DictionaryGeneration to
+        create the keywords for the index files. The is a default implementation
+        provided in the class DictionaryUpdate. This default implementation may
+        be adapted to specifics for a dictionary, for example when there is a
+        need to search with additional expressions. Examples:<br>
+        - CEDICT (DictionaryUpdateCEDICTChi): find Chinese words also with
+        Pinyin.<br>
+        - EDICT (DictionaryUpdateEDICTJpn): find Japanese words with Kanji and
+        Hiragana</p>
+        <p>createKeyWordVector returns a Vector of IndexKeyWordEntry. For adding
+        the IndexKeyWordEntry objects to the Vector, use
+        DictionaryUpdateLib.addKeyWordExpressions. Put into the index all index
+        expressions that may be used to find the dictionary expression.&nbsp;&nbsp;
+        </p>
+        <p>As always: if you have any problem
+        <a href="http://dictionarymid.sourceforge.net/contact.html">send us an email</a>!
+        </p>
+</div>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="keywords" content="dictionary, language, MIDP, J2ME, Java, Midlet, mobile, cell phone, PDA">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>DictionaryForMIDs - a free multi-language dictionary for cell phones and PDAs</title>
+  </head>
+
+<body>
+
+<div id="content">
+
+    <a name="Setup"></a>
+
+    <h2><a name="Publish"></a>Putting the generated files in DictionaryForMIDs.jar</h2>
+    <p>Here is how to use JarCreator:</p>
+    <pre>java -jar JarCreator.jar dictionarydirectory emptyjar outputdirectory</pre>
+    <h5>dictionarydirectory:</h5>
+    <p>The first parameter is the directory where the generated files are
+    located. This is the same path as outputdirectory for
+    DictionaryGeneration. Also this directory path must end in &quot;dictionary&quot;.
+    If you are also using a bitmap font with this dictionary, font.bmf must be located
+    in this directory. JarCreator will automatically move the font file from this directory
+    to its correct location in the JAR package.</p>
+    <h5>emptyjar:</h5>
+    <p>The second parameter is the directory where the 'empty' files
+    DictionaryForMIDs.jar and DictionaryForMIDs.jad are found.</p>
+    <h5>outputdirectory:</h5>
+    <p>The third parameter is the directory where JarCreator stores the
+    completed DictionaryForMIDs_xxx.jar and DictionaryForMIDs_xxx.jad (xxx
+    is filled in by JarCreator with languageFileXPostfix and
+    dictionaryAbbreviation). This output contains the dictionary files from
+    the dictionarydirectory.</p>
+
+    <h3><a name="ManualUpdate"></a>Updating DictionaryForMIDs.jar manually (if you are not using
+    JarCreator)</h3>
+
+    <p>(if you are using JarCreator, continue with
+    <a href="#SampleDictionaryForMIDsjar">Sample DictionaryForMIDs.jar</a>)<br>
+    Normally you should be using JarCreator, because JarCreator is
+        automatically taking care for a lot of things. Still, alternatively to using JarCreator, you can also update the file
+    DictionaryForMIDs manually: You use a ZIP-utility to do so, such as the
+    free info-zip (<a href="http://www.info-zip.org/WiZ.html" target="_blank">Windows
+    version</a> or <a href="http://www.info-zip.org/Zip.html" target="_blank">
+    command line version</a>) or WinZip.</p>
+    <p>In the file DictionaryForMIDs.jar add the directory &quot;dictionary&quot;
+    including all the generated files. Important: in the JAR-file the
+    generated files _must_ be in the directory dictionary, otherwise you
+    will receive an error message when you translate from DictionaryForMIDs.
+    Depending on the ZIP-utility that you are using, adding the files in the
+    directory dictionary can be little bit tricky.</p>
+
+    <p>If you are including a bitmap font with the dictionary, font.bmf must be moved out of the 'dictionary'
+    directory, and into a new directory called 'fonts'. Bitmap font support will not be available in DictionaryForMIDs
+    unless the font file is in the correct directory. The 'fonts' folder should be at the same level as the 'dictionary'
+    directory in the directory tree.</p>
+
+    <p>After adding the dictionary files, you need to adjust the property
+    MIDlet-Jar-Size in the file DictionaryForMIDs.jad. Put precisely the
+    file size of the file DictionaryForMIDs.jar behind this property, such
+    as here</p>
+    <pre>MIDlet-Jar-Size: 58037
+    </pre>
+
+    <h3><a name="SampleDictionaryForMIDsjar"></a>Sample DictionaryForMIDs.jar</h3>
+
+    <p>Here is an example for DictionaryForMIDs set up with a dictionary.
+    You can see there that the generated files are in the directory
+    &quot;dictionary&quot;:
+    <br>
+    <a href="http://prdownloads.sourceforge.net/dictionarymid/DictionaryForMIDs_2.4.0_EngPor_IDP_dev.zip?download" target="_blank">
+    DictionaryForMIDs_2.4.0_EngPor_IDP_dev.zip</a> (66 kB).</p>
+    </div>
+</body>
+</html>

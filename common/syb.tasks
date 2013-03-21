@@ -1,0 +1,4 @@
+# Subanen Central information
+setvar langname Subanen
+setvar langs 2
+startmenu "Central Subanen DFM builder" syb common\dfm-build.menu data\syb

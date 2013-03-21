@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="keywords" content="dictionary, language, MIDP, J2ME, Java, Midlet, mobile, cell phone, PDA">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>DictionaryForMIDs - a free multi-language dictionary for cell phones and PDAs</title>
+  </head>
+  <body>
+
+
+<div id="content">
+
+    <h2>DictionaryUpdate classes</h2>
+
+    <p>DictionaryGeneration customization is done by providing a
+    &quot;DictionaryUpdate&quot;-class with a specific behaviour. A customized
+    &quot;DictionaryUpdate&quot;-class can be provided for each language. This is done via the
+    property languageXDictionaryUpdateClassName of DictionaryForMIDs.properties, see
+    section <a href="newdictProperties.html">Configuring the properties of the file
+    DictionaryForMIDs.properties</a>.</p>
+    <p>You need to have a Java SDK installed on your PC for implementing
+        DictionaryUpdate classes and you should have some basic Java knowledge.</p>
+    <p>The DictionaryUpdate class provides the following methods:</p>
+    <pre>package de.kugihan.dictionaryformids.dictgen.dictionaryupdate;
+    public class DictionaryUpdate {
+
+      public String updateDictionaryExpression(String dictionaryExpression) {
+        // default is to do nothing
+        return dictionaryExpression;
+      }
+
+      public String removeNonSearchParts(String expression) {
+        // default is to do nothing
+        return expression;
+      }
+
+      public void updateKeyWordVector(Vector keyWordVector) {
+        // default is to do nothing
+      }
+    }
+    </pre>
+    <p>First on the term 'expression': DictionaryGeneration reads strings
+        from inputdictionaryfile till the separation character (or newline) is
+        found. These strings are called expressions. An expression may contain
+        one or more words, depending on your inputdictionaryfile. An expression
+        could be for example &quot;give up&quot;, then &quot;give&quot; would be a word and &quot;up&quot;
+        would be a word of the expression. The words are put into the index
+        files.<br>
+    &nbsp;</p>
+    <ul>
+    <li>
+    <pre>updateDictionaryExpression</pre>
+    </li>
+    </ul>
+    <p>For each expression that is read for a language this method is called. This
+    methods gets passed the expression that was read from the inputdictionaryfile
+    (parameter dictionaryExpression) and returns the expression that goes into the
+    generated dictionary. In the method updateDictionaryExpression you may do
+    whatever conversion from the input expression to the generated expression.<br>
+    &nbsp;</p>
+    <ul>
+    <li>
+    <pre>removeNonSearchParts</pre>
+    </li>
+    </ul>
+    <p>An expression may contain some information that is useful for showing in the
+    translation result, but is not useful for being included in the search indexes.
+    For example, expressions from the inputdictionaryfile may be of the form &quot;word
+    [pronounciation]&quot;. The pronounciation may look cryptic and may not be useful for
+    searching. Then the part in square brackets should be removed by the method
+    removeNonSearchParts. Still the pronounciation will be shown by
+    DictionaryForMIDs in the translation result. <br>
+    The method removeNonSearchParts is called after the method
+    updateDictionaryExpression.<br>
+    &nbsp;</p>
+    <ul>
+    <li>
+    <pre>updateKeyWordVector</pre>
+    </li>
+    </ul>
+    <p>For some dictionaries it turns out that there are words in the
+    inputdictionaryfile that simply should be ignored. After DictionryGeneration did
+    split up the expressions into its words this method is called. keyWordVector
+    contains the list of&nbsp; IndexKeyWordEntry objects:</p>
+    <pre>public class IndexKeyWordEntry {
+      public String keyWord; // the word for the index
+      public SearchIndicator searchIndicator;  // typically not needed
+    ...
+    }</pre>
+    <p>In the method updateKeyWordVector those words that should not go in the
+    dictionary can be removed from keyWordVector. <br>
+    The method updateKeyWordVector is called after the method removeNonSearchParts.</p>
+    <p>For more advanced capabilities of the DictionaryUpdate-class, see
+        <a href="newdictDictionaryUpdateAdvanced.html">here</a>.<br>
+&nbsp;</p>
+    <p>&nbsp;</p>
+</div>
+    </body>
+</html>

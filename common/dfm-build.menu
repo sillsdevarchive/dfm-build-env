@@ -1,0 +1,5 @@
+# dfm-build.menu
+Make minimal wordlist DFM source from xml file;tasklist common\wl.tasks
+Make small dict (no examples) DFM source from xml file;tasklist min.tasks
+Make medium sized (no index of vern example) DFM source from xml file;tasklist common\mid.tasks
+Make full sized DFM source from xml file;tasklist full.tasks
