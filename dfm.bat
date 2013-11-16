@@ -14,7 +14,7 @@
 :setuptasks
 echo off
 set iso=%1
-if [%iso%]==[] call :get_input iso "Type ISO code of the dictionary to create then press Enter"
+if not defined iso call :get_input iso "Type ISO code of the dictionary to create then press Enter"
 ::if "%~1" == "" (
 ::set size=full
 ::) else (
@@ -35,27 +35,27 @@ echo off
 echo %time%
 ::set menuname=menu1
 ::cls
-echo.
+echo[
 echo     DictionaryForMids multi Project and multi size builder tool
-echo.
+echo[
 echo        Choose a task  for ISO - %iso% - %langname% Languages=%langs%
 call :menuline a :xml2dfmsetup "Make minimal wordlist DFM source from xml file" size %wl%
 call :menuline b :buildjar "Make minimal wordlist dictionary JAR" size %wl%
-echo.
+echo[
 
 call :menuline c :xml2dfmsetup "Make small dict (no examples) DFM source from xml file" size %min%
 call :menuline d :buildjar "Make small dictionary (no examples) JAR" size %min%
-echo.
+echo[
 call :menuline e :xml2dfmsetup "Make medium sized (no index of vern example) DFM source from xml file" size %mid%
 call :menuline f :buildjar "Make mid sized dictionary (no index of vern example) JAR" size %mid%
-echo.
+echo[
 
 call :menuline g :xml2dfmsetup "Make full sized DFM source from xml file" size %full%
 call :menuline h :buildjar "Make full dictionary JAR" size %full%
-echo.
+echo[
 echo        Q. Exit batch menu and command window
 echo        X. Exit batch menu
-echo.
+echo[
 :: The menuoptions variable reflects what is in the letter choices above.
 set menuoptions=a b c d e f g h
 call :menuchoice
@@ -66,13 +66,13 @@ goto :menu1
 :ifnotexisterror
 set testfile=%~1
 set message=%~2
-echo.
+echo[
 echo %message%
 echo %message%>>%logfile%
-echo.
+echo[
 if "%~3" == "fatal" (
 echo The script will end.
-echo.
+echo[
 pause
 exit /b
 )
@@ -87,6 +87,8 @@ goto :eof
 
 :buildjar
 set indexerror=0
+call %let%-options.cmd
+
 :: run some checks of directories and files
 call :ifnotexiterror "data\%iso%\%langs%\%size%\DictionaryForMIDs.properties" "DictionaryForMIDs.properties file is missing! Please put it into the subdirectory data\%iso%\%langs%\%size%." fatal
 call :ifnotexiterror "data\%iso%\%langs%\%size%\Dictionary_input.txt" "Dictionary_input.txt file is missing! Please put it into the subdirectory data\%iso%\%langs%\%size%." fatal
@@ -104,10 +106,10 @@ java -jar "Tools\DictionaryGeneration.jar" "data\%iso%\%langs%\%size%\Dictionary
 echo errorlevel=%errorlevel%
 
 
-echo.
+echo[
 echo If your screen finished with "Complete", then the indexes were created OK.
 echo If you see anything else, then read the error message to fix the problem.
-echo.
+echo[
 call :catcherrors %errorlevel% indexerror DictionaryGeneration
 :: catch erros does not work as the errorlevel is not set yet by DictionaryGeneration.jar
 :: the folloiwing two lines try and catch the error.
@@ -122,15 +124,15 @@ java -jar "Tools\JarCreator.jar" "data\%iso%\%langs%\%size%\dictionary" "Tools" 
 
 call:catcherrors %errorlevel% jarerror "JarCreation"
 
-echo.
-echo.
+echo[
+echo[
 if  %errorlevel% == 0 echo ZZZ: dictionaryAbbreviation  ^<-- appears above. That is a correct finish.
-if  %errorlevel% == 0 echo.
+if  %errorlevel% == 0 echo[
 if  %errorlevel% == 0 echo JarCreation succeeded!!
 if  %errorlevel% neq 0 echo Your screen did not finished with "ZZZ: DictionaryAbbreviation" above.
-if  %errorlevel% neq 0 echo.
+if  %errorlevel% neq 0 echo[
 if  %errorlevel% neq 0 echo Read the error message to fix the problem (if you understand Java).
-echo.
+echo[
 ::pause
 :: added by Ian to move the Jar files to a unique place
 if not exist "data\%iso%\%langs%\%size%\JAR\" call:catcherrors %errorlevel% no JAR directory
@@ -152,7 +154,7 @@ call :ifnotdo "%zipfile%" "set ziperror=1"
 cd "%basepath%"
 
 :: start error level reporting
-echo.
+echo[
 echo      ===== Build Report =====
 echo DictionaryGeneration error set to: %indexerror%
 echo JarCreator error set to          : %jarerror%
@@ -160,7 +162,7 @@ echo File Copy error set to           : %copyerror%
 echo Zip File error set to            : %ziperror%
 ::echo Copy 2 error set to     : %copy2error%
 ::echo Move error set to       : %moveerror%
-echo.
+echo[
 
 goto :eof
 ::exit
@@ -192,7 +194,7 @@ SET /P Choice=Type the letter and press Enter:
 :: starting at 0 (the beginning) and 1 character long
 IF NOT '%Choice%'=='' SET Choice=%Choice:~0,1%
 
-ECHO.
+echo[
 :: Loop to evaluate the input and start the correct process.
 :: the following line processes the choice
 FOR /D %%c IN (%menuoptions%) DO call :menueval %%c
@@ -204,13 +206,13 @@ goto:eof
 set menulist=%~1
 set title=     %~2
 set menuoptions=
-echo.
+echo[
 echo %title%
-echo.
+echo[
 FOR /F "eol=# tokens=1,2,3 delims=;" %%i in (%menulist%) do @echo        %%i. %%j &set option%%i=%%k &call :menuoptions %%i
-echo.
+echo[
 echo        X. Exit batch menu
-echo.
+echo[
 :: SET /P prompts for input and sets the variable to whatever the user types
 SET Choice=
 SET /P Choice=Type the letter and press Enter:
@@ -317,39 +319,39 @@ set propfile=data\%iso%\%langs%\%size%\DictionaryForMIDs.properties
 echo infoText: %title%. %publisher%. version^: %version% %date:~-4,4%-%date:~-7,2%-%date:~-10,2% %dicturi%>%propfile%
 echo dictionaryAbbreviation^: %iso%-%size%>>%propfile%
 echo numberOfAvailableLanguages^: %langs% >>%propfile%
-echo.>>%propfile%
+echo[>>%propfile%
 echo language1DisplayText: %langname%>>%propfile%
 echo language2DisplayText: English Index>>%propfile%
 if "%langs%" GEQ "3" echo language3DisplayText^: %langname3% Index>>%propfile%
 if "%langs%" GEQ "4" echo language4DisplayText^: %langname4% Index>>%propfile%
 if "%langs%" GEQ "5" echo language5DisplayText^: %langname5% Index>>%propfile%
-echo.>>%propfile%
+echo[>>%propfile%
 echo language1FilePostfix^: %iso%>>%propfile%
 echo language2FilePostfix^: eng>>%propfile%
 if "%langs%" GEQ "3" echo language3FilePostfix^: %iso3%>>%propfile%
 if "%langs%" GEQ "4" echo language4FilePostfix^: %iso4%>>%propfile%
 if "%langs%" GEQ "5" echo language5FilePostfix^: %iso5%>>%propfile%
-echo.>>%propfile%
+echo[>>%propfile%
 FOR /L %%n IN (1,1,%langs%) DO echo language%%nIsSearchable: true>>%propfile%
-echo.>>%propfile%
+echo[>>%propfile%
 FOR /L %%n IN (1,1,%langs%) DO echo language%%nGenerateIndex: true>>%propfile%
-echo.>>%propfile%
+echo[>>%propfile%
 FOR /L %%n IN (1,1,%langs%) DO echo  language%%nHasSeparateDictionaryFile: false>>%propfile%
-echo.>>%propfile%
+echo[>>%propfile%
 
 FOR /F "delims=/" %%s IN (%propmid%) DO echo %%s>>%propfile%
-echo.>>%propfile%
+echo[>>%propfile%
 
 FOR /L %%n IN (1,1,%langs%) DO echo  language%%nDictionaryUpdateClassName: de.kugihan.dictionaryformids.dictgen.dictionaryupdate.DictionaryUpdate>>%propfile%
-echo.>>%propfile%
+echo[>>%propfile%
 
 FOR /L %%n IN (1,1,%langs%) DO echo  language%%nNormationClassName: de.kugihan.dictionaryformids.translation.normation.NormationEng>>%propfile%
-echo.>>%propfile%
+echo[>>%propfile%
 
 if "%size%" neq "wl" FOR /F "delims=/" %%s IN (%proptail%) DO echo %%s>>%propfile%
 echo Properties file created here: data\%iso%\%langs%\%size%\DictionaryForMIDs.properties
 echo Edit it if you wish.
-echo.
+echo[
 echo off
 
 :: start Copyright file
@@ -402,7 +404,7 @@ goto :eof
 :checkdir
 set report=Checking dir %~1
 if exist "%~1"  (
-		  echo . . . Found! %~1
+		  if defined echocheckdir echo . . . Found! %~1
 	) else (
 		  echo . . . not found. %~1
 		  mkdir "%~1"
@@ -491,7 +493,7 @@ if exist "local_var.cmd" call "local_var.cmd"
 goto :eof
 
 :menuline
-:: echo on
+echo off
 set l=%~1
 set action=%~2
 set textchoice=%~3
@@ -504,9 +506,9 @@ set param3=%~8
 set option%l%=%action%
 
 if "%paramname1%" neq "" set out=%~1-options.cmd
-if "%paramname1%" neq "" echo set %~4=%~5>%out%
-if "%paramname2%" neq "" echo set %~6=%~7>>%out%
-if "%paramname3%" neq "" echo set %~8=%~9>>%out%
+if defined paramname1 echo set %~4=%~5>%out%
+if defined paramname2 echo set %~6=%~7>>%out%
+if defined paramname3 echo set %~8=%~9>>%out%
 
 :: echo off
 if "%textchoice%" neq "hide" echo        %l%. %textchoice%
@@ -517,11 +519,11 @@ exit /b %errorlevel%
 :done
 
 :exitmessage
-echo.
+echo[
 echo %message%
-echo.
+echo[
 echo The script will end.
-echo.
+echo[
 pause
 
 :end
