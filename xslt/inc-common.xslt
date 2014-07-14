@@ -34,12 +34,12 @@ deGroup
 "/>
 	  <!-- the above list should space or newline separated
 	It is okay to have redundant groups, but all groups sould be included and any thing else that has valid content -->
-	  <xsl:variable name="nomarkupgroup">
-			<!-- uses inc-list2xml.xslt to create a node set of group elements   -->
+	  <xsl:variable name="nomarkupgroup" select="tokenize($nomarkupgrouplist,'\s+')"/>
+			<!-- uses inc-list2xml.xslt to create a node set of group elements
 			<xsl:call-template name="list2xml">
 				  <xsl:with-param name="text" select="$nomarkupgrouplist"/>
 			</xsl:call-template>
-	  </xsl:variable>
+	  </xsl:variable>  -->
 	  <xsl:include href="inc-remove-square-brackets.xslt"/>
 	  <xsl:include href="inc-list2xml.xslt"/>
 	  <!-- inc-list2xml.xslt used by the nomarkupgroup variable   -->
@@ -87,7 +87,7 @@ deGroup
 			<xsl:text>&#13;
 </xsl:text>
 	  </xsl:template>
-	  <xsl:template match="*[local-name() = $nomarkupgroup/*/text()]">
+	  <xsl:template match="*[local-name() = $nomarkupgroup]">
 			<!-- common group to PLB or MDF like msGroup|psGroup|glGroup  *[local-name() = $nomarkupgroup/*/text()] -->
 			<xsl:apply-templates/>
 	  </xsl:template>
@@ -102,23 +102,23 @@ deGroup
 	  <xsl:template match="*" mode="indexnat"/>
 	  <xsl:template match="*" mode="indexreg"/>
 	  <xsl:template match="*" mode="indexreg2"/>
-	  <xsl:template match="*[local-name() = $nomarkupgroup/*/text()]" mode="indexeng">
+	  <xsl:template match="*[local-name() = $nomarkupgroup]" mode="indexeng">
 			<!-- common group to PLB or MDF like msGroup|psGroup|glGroup  *[local-name() = $nomarkupgroup/*/text()] -->
 			<xsl:apply-templates mode="indexeng"/>
 	  </xsl:template>
-	  <xsl:template match="*[local-name() = $nomarkupgroup/*/text()]" mode="indexengsub">
+	  <xsl:template match="*[local-name() = $nomarkupgroup]" mode="indexengsub">
 			<!-- common group to PLB or MDF like msGroup|psGroup|glGroup  *[local-name() = $nomarkupgroup/*/text()] -->
 			<xsl:apply-templates mode="indexengsub"/>
 	  </xsl:template>
-	  <xsl:template match="*[local-name() = $nomarkupgroup/*/text()]" mode="indexnat">
+	  <xsl:template match="*[local-name() = $nomarkupgroup]" mode="indexnat">
 			<!-- common group to PLB or MDF like msGroup|psGroup|glGroup  *[local-name() = $nomarkupgroup/*/text()] -->
 			<xsl:apply-templates mode="indexnat"/>
 	  </xsl:template>
-	  <xsl:template match="*[local-name() = $nomarkupgroup/*/text()]" mode="indexreg">
+	  <xsl:template match="*[local-name() = $nomarkupgroup]" mode="indexreg">
 			<!-- common group to PLB or MDF like msGroup|psGroup|glGroup  *[local-name() = $nomarkupgroup/*/text()] -->
 			<xsl:apply-templates mode="indexreg"/>
 	  </xsl:template>
-	  <xsl:template match="*[local-name() = $nomarkupgroup/*/text()]" mode="indexreg2">
+	  <xsl:template match="*[local-name() = $nomarkupgroup]" mode="indexreg2">
 			<!-- common group to PLB or MDF like msGroup|psGroup|glGroup  *[local-name() = $nomarkupgroup/*/text()] -->
 			<xsl:apply-templates mode="indexreg2"/>
 	  </xsl:template>
