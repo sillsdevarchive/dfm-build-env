@@ -9,14 +9,13 @@
 			<xsl:apply-templates select="sense">
 				  <xsl:with-param name="headword" select="$headword"/>
 			</xsl:apply-templates>
-
-<!--
+			<!--
 			 <xsl:for-each select="sense">
 				  <xsl:call-template name="senseentry">
 					<xsl:with-param name="headword" select="$headword"/>
 				  </xsl:call-template>
 			</xsl:for-each>
--->
+			-->
 	  </xsl:template>
 	  <xsl:template match="lexical-unit/form/text">
 			<xsl:apply-templates/>
@@ -31,9 +30,7 @@
 			<xsl:variable name="l1" select="sense[1]/definition/form[@lang = 'en']/text"/>
 			<xsl:variable name="l2" select="sense[1]/definition/form[@lang = 'tl']/text"/>
 			<xsl:choose>
-				  <xsl:when test="string-length($l1) + string-length($l2) = 0">
-
- </xsl:when>
+				  <xsl:when test="string-length($l1) + string-length($l2) = 0"/>
 				  <xsl:otherwise>
 						<xsl:apply-templates select="$headword"/>
 						<xsl:text>&#9;</xsl:text>
@@ -41,20 +38,16 @@
 						<xsl:text> &#9;</xsl:text>
 						<xsl:apply-templates select="$l2"/>
 						<xsl:text> </xsl:text>
-						<xsl:text>
-</xsl:text>
+						<xsl:text>&#10;</xsl:text>
 				  </xsl:otherwise>
 			</xsl:choose>
-
 	  </xsl:template>
-			<xsl:template match="sense"><xsl:param name="headword"/>
-
+	  <xsl:template match="sense">
+			<xsl:param name="headword"/>
 			<xsl:variable name="l1" select="definition/form[@lang = 'en']/text"/>
 			<xsl:variable name="l2" select="definition/form[@lang = 'tl']/text"/>
 			<xsl:choose>
-				  <xsl:when test="string-length($l1) + string-length($l2) = 0">
-
- </xsl:when>
+				  <xsl:when test="string-length($l1) + string-length($l2) = 0"/>
 				  <xsl:otherwise>
 						<xsl:apply-templates select="$headword"/>
 						<xsl:text>&#9;</xsl:text>
@@ -62,10 +55,8 @@
 						<xsl:text> &#9;</xsl:text>
 						<xsl:apply-templates select="$l2"/>
 						<xsl:text> </xsl:text>
-						<xsl:text>
-</xsl:text>
+						<xsl:text>&#10;</xsl:text>
 				  </xsl:otherwise>
 			</xsl:choose>
-
 	  </xsl:template>
 </xsl:stylesheet>
