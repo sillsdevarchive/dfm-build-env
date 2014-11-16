@@ -23,8 +23,7 @@
 			<xsl:text>}}<!-- end hide content from inclusion in indexes --></xsl:text>
 			<xsl:text>&#9;<!-- tab to separate language index--></xsl:text>
 			<xsl:apply-templates mode="index"/>
-			<xsl:text>&#13;<!-- CR character entity and NL provided by NL-->
-</xsl:text>
+			<xsl:text>&#13;&#10;<!-- CR character entity and NL entity--></xsl:text>
 	  </xsl:template>
 	  <xsl:template match="html:*[@class = 'headword']" mode="head">
 			<xsl:apply-templates mode="head"/>
