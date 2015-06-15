@@ -54,13 +54,13 @@ call :menuline g :xml2dfmsetup "Make full sized DFM source from xml file" size %
 call :menuline h :buildjar "Make full dictionary JAR" size %full%
 echo[
 echo        Q. Exit batch menu and command window
-echo        X. Exit batch menu
+echo        Z. Exit batch menu
 echo[
 :: The menuoptions variable reflects what is in the letter choices above.
 set menuoptions=a b c d e f g h
 call :menuchoice
 if '%choice%' == 'q' exit %errorlevel%
-if '%choice%' == 'x' exit /b %errorlevel%
+if '%choice%' == 'z' exit /b %errorlevel%
 goto :menu1
 
 :ifnotexisterror
